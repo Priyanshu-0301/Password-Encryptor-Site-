@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta name="viewport" content="width=device-width, initial scale=1.0">
+    <title>QR Code Generator</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+
+    <div class="main">
+      <button type="button" class="btn" id="Ebtn" onclick="Eshow()">ENCRYPT</button>
+      <button type="button" class="btn" id="Dbtn" onclick="Dshow()">DECRYPT</button>
+    </div>
+
+    <div id="container">
+
+      <p>Enter the details below</p>
+
+      <input class="inpt" type="text" placeholder="Password"  id="qrText">
+      <input class="inpt" type="text" placeholder="Master Password"  id="Emaster">
+
+      <div id="imgBox">
+        <canvas id="canvas"></canvas>
+        <img id="qrImage" src="" alt="">
+        <button type="button" id="downloadBtn" class="btn" >SAVE</button>
+      </div>
+
+      <button class="btn" onclick="generateQR()">Encrypt</button>
+
+    </div>
+
+    <div id="decrypt">
+      <input type="file" name="encrptedImage" id="upload" onchange="loading()" >
+      <label for="upload">
+        <i class="gg-qr"></i><p>Code</p></label>
+      <input class="inpt" type="text" placeholder="Master Password"  id="Dmaster">
+      <p id="password" style="display : none">PASSWORD: </p>
+      <button type="button" class="btn" onclick="decryptor()">DECRYPT</button>
+    </div>
+
+    <div id="hiddenForm" style="display: none" >
+
+      <form enctype="multipart/form-data" action="http://api.qrserver.com/v1/read-qr-code/" method="POST" id="qrForm" >
+          <input type="hidden" name="MAX_FILE_SIZE" value="1048576" />
+
+          <input type="submit" value="Read QR code" />
+      </form>
+
+    </div>
+
+    <script src="script.js"></script>
+
+  </body>
+</html>
